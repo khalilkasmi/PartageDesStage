@@ -1,0 +1,18 @@
+@layout('layouts.main')
+
+@section('title')
+    login
+@endsection
+
+@section('content')
+
+<div>
+    <form action="{{ route('UserController.login') }}" method="POST">
+        {{ csrfField() }}
+        <input type="text" name="email" placeholder="email" value="{{ old(email)}}">
+        <input type="password" name="password">
+        <button type="submit">go</button>
+    </form>
+</div>
+
+@endsection

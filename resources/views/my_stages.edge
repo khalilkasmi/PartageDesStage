@@ -1,0 +1,26 @@
+@layout('layouts.main')
+
+
+@section('title')
+mes stages
+@endsection
+
+@section('content')
+<h1>Mes stages</h1> 
+<div>
+            @if(stages.length === 0)
+              <h4>nothing found, try to add a stage</h4>
+            @else
+                @each(stage in stages)
+                    <div>
+                        <h3>{{ stage.entreprise }}</h3>
+                        <p>{{ stage.ecole }}</p>
+                        <p>{{ stage.ville }}</p>
+                        <a href="/stage/edit/{{stage.id}}">editer</a>
+                        <a href="/stage/delete/{{stage.id}}">supprimer</a>
+                    </div>
+                     @endeach
+            @endif
+       
+    </div>
+@endsection

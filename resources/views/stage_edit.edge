@@ -1,0 +1,17 @@
+@layout('layouts.main')
+
+@section('title')
+mettre a jour un stage
+@endsection
+
+@section('content')
+
+<form action="{{ route('StageController.update',{id: stage.id}) }}" method="post">
+    {{ csrfField() }}
+<input type="text" name="entreprise" value="{{stage.entreprise}}">
+    <input type="text" name="ecole" value="{{stage.ecole}}">
+    <input type="text" name="ville" value="{{stage.ville}}">
+    <button type="submit">mettre a jour</button>
+</form>
+
+@endsection

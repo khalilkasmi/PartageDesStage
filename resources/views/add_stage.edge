@@ -1,0 +1,17 @@
+@layout('layouts.main')
+
+@section('title')
+ajouter un stage
+@endsection
+
+@section('content')
+
+<form action="{{ route('StageController.create') }}" method="post">
+    {{ csrfField() }}
+    <input type="text" name="entreprise" placeholder="entreprise">
+    <input type="text" name="ecole" placeholder="ecole">
+    <input type="text" name="ville" placeholder="ville">
+    <button type="submit">ajouter</button>
+</form>
+
+@endsection
