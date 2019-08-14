@@ -6,15 +6,117 @@
 
 @section('content')
     <!-- display all interships here -->
-    @if(stages.length === 0)
-        <h4>nothing found, try to add a stage</h4>
-    @else
+    <div class="row">
+        <div class="col-12">
+            <h1 style="margin-top:3em;margin-bottom:2em;text-align:center">
+                Chercher un STAGE
+            </h1>
+        </div>
+    </div>
+<div class="row" style="margin-top:1em;margin-bottom:3em;">
+    <div class="col-12" >
+            <form action="{{ route('/stage/search') }}" method="POST">
+                {{ csrfField() }}
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search_input"
+                     placeholder="chercher par ville, ecole, entreprise, theme ... " 
+                     aria-label="Recipient's username" aria-describedby="button-addon2"
+                     >
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">chercher</button>
+                    </div>
+                </div>
+            </form>
+
+            
+    </div>
+</div>
+<div class="row" style="margin-top:3em;margin-bottom:3em;">
+    <div class="col-12" >
+        <h1>Nos Récentes Stages</h1>
+    </div>
+</div>
+
+<div class="row">
+        @if(stages.length === 0)
+           <div class="col-4"></div>
+           <div class="col-4">
+               <h1 style="color:#eee;text-align:center" >204</h1>
+               <h3 style="color:#eee;text-align:center">Nothing Found</h3>
+                       </div>
+           <div class="col-4"></div>
+        @else
         @each(stage in stages)
-            <div>
-            <h3>{{ stage.entreprise }}</h3>
-            <p>{{ stage.ecole }}</p>
-            <p>{{ stage.ville }}</p>
-            </div>
+        <div class="col-12" >
+                <div class="row" id="element-card" >
+                    <div class="col-12">
+                            <div class="row">
+                                <div class="col-6" style="margin-bottom:1em">
+                                    <h1><a href="http://{{ stage.siteweb }}">{{ stage.entreprise }}</a></h1>
+                                    <h2>{{ stage.ville }}</h2>
+                                    <h6><span style="color:#afafaf">{{ stage.duration }} mois</span></h6>
+                                </div>
+                                <div class="col-4">
+                                        <h1 style="text-transform:uppercase">{{ stage.ecole }}</h1>
+                                        <h2 >{{ stage.type_stage }}</h2>
+                                        <p class="btn btn-outline-warning">{{ stage.domaine }}</p>
+
+                                </div>
+                                <div class="col-2">
+                                        <a class="btn btn-outline-success  btn-block" href="mailto:{{ stage.email }}">apply</a>                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2>{{ stage.theme }}</h2>
+                                    <p style="color:#929292">{{ stage.description }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="row">
+                                        <div class="col-12">
+                                    <h3>
+                                    <script>
+                                                        var str = \'{{stage.technologies}}\'
+                                                        var arr = str.split(',')    
+                                                        arr.forEach(element => {
+                                                            document.write('<span class="badge badge-pill badge-primary">'+element+'</span>')
+                                                        });
+                                                    </script>
+                                        </h3>            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                        
+                        
+                        
+                        <p></p>
+                        
+                       
+                        
+                        
+                </div>
+        </div>
         @endeach
-    @endif
+        @endif
+</div>
+@endsection
+
+@section('style')
+<style>
+#element-card{
+    box-shadow: 0px 0px 3px 0px #0000003b;
+    border-radius: 5px; 
+    padding:1em;
+    margin-top:1em;
+    margin-bottom:1em;
+    transition: .5s ease-in-out;
+}
+#element-card:hover{
+    box-shadow: 0px 0px 15px 0px #0000003b;
+   
+}
+</style>
 @endsection

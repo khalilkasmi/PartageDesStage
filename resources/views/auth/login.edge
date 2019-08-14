@@ -6,13 +6,31 @@
 
 @section('content')
 
-<div>
-    <form action="{{ route('UserController.login') }}" method="POST">
-        {{ csrfField() }}
-        <input type="text" name="email" placeholder="email" value="{{ old(email)}}">
-        <input type="password" name="password">
-        <button type="submit">go</button>
-    </form>
+
+<div class="container text-center" style="margin-top:7em">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <form class="form-signin" action="{{ route('UserController.login') }}" method="POST">
+                {{ csrfField() }}
+                <h1>MYSTAGE</h1>
+                <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox mb-3">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <a href="/register"><small>don't have an account ?</small></a>
+            </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
 </div>
 
 @endsection
+

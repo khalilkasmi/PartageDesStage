@@ -5,22 +5,93 @@
 mes stages
 @endsection
 
+
 @section('content')
-<h1>Mes stages</h1> 
-<div>
-            @if(stages.length === 0)
-              <h4>nothing found, try to add a stage</h4>
-            @else
-                @each(stage in stages)
-                    <div>
-                        <h3>{{ stage.entreprise }}</h3>
-                        <p>{{ stage.ecole }}</p>
-                        <p>{{ stage.ville }}</p>
-                        <a href="/stage/edit/{{stage.id}}">editer</a>
-                        <a href="/stage/delete/{{stage.id}}">supprimer</a>
-                    </div>
-                     @endeach
-            @endif
-       
+
+<div class="row" style="margin-top:7em;margin-bottom:3em;">
+    <div class="col-12" >
+        <h1>Mes Stages</h1>
     </div>
+</div>
+
+<div class="row">
+        @if(stages.length === 0)
+           <div class="col-4"></div>
+           <div class="col-4">
+               <h1 style="color:#eee;text-align:center" >204</h1>
+               <h3 style="color:#eee;text-align:center">Ajouter des stages</h3>
+                       </div>
+           <div class="col-4"></div>
+        @else
+        @each(stage in stages)
+        <div class="col-12" >
+                <div class="row" id="element-card" >
+                    <div class="col-12">
+                            <div class="row">
+                                <div class="col-6" style="margin-bottom:1em">
+                                    <h1><a href="http://{{ stage.siteweb }}">{{ stage.entreprise }}</a></h1>
+                                    <h2>{{ stage.ville }}</h2>
+                                    <h6><span style="color:#afafaf">{{ stage.duration }} mois</span></h6>
+                                </div>
+                                <div class="col-4">
+                                        <h1 style="text-transform:uppercase">{{ stage.ecole }}</h1>
+                                        <h2 >{{ stage.type_stage }}</h2>
+                                        <p class="btn btn-outline-warning">{{ stage.domaine }}</p>
+
+                                </div>
+                                <div class="col-2">
+                                        <a class="btn btn-outline-warning btn-sm" href="/stage/edit/{{stage.id}}">editer</a>
+                                        <a class="btn btn-outline-danger btn-sm" href="/stage/delete/{{stage.id}}">supprimer</a>
+                                    </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2>{{ stage.theme }}</h2>
+                                    <p style="color:#929292">{{ stage.description }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                        <div class="col-12">
+                                    <h3>
+                                    <script>
+                                                        var str = \'{{stage.technologies}}\'
+                                                        var arr = str.split(',')    
+                                                        arr.forEach(element => {
+                                                            document.write('<span class="badge badge-pill badge-primary">'+element+'</span>')
+                                                        });
+                                                    </script>
+                                        </h3>            
+                                        </div>
+                                  
+                            </div>
+                    </div>
+                        
+                        
+                        
+                        <p></p>
+                        
+                       
+                        
+                        
+                </div>
+        </div>
+        @endeach
+        @endif
+</div>
+@endsection
+
+@section('style')
+<style>
+#element-card{
+    box-shadow: 0px 0px 3px 0px #0000003b;
+    border-radius: 5px; 
+    padding:1em;
+    margin-top:1em;
+    margin-bottom:1em;
+    transition: .5s ease-in-out;
+}
+#element-card:hover{
+    box-shadow: 0px 0px 15px 0px #0000003b;
+   
+}
+</style>
 @endsection

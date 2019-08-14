@@ -26,6 +26,7 @@ Route.post('/login','UserController.login')
 Route.post('/register','UserController.create')
 Route.post('/add-stage','StageController.create')
 Route.post('/stage/update/:id','StageController.update')
+Route.post('/stage/search/','StageController.search')
 
 
 Route.get('/stage/delete/:id','StageController.delete')
